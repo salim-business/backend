@@ -1,0 +1,15 @@
+exports.Staff = require("./staff");
+exports.Attachment = require("./attachment");
+exports.Record = require("./record");
+// exports.Order = require("./movingorder");
+exports.Delivery = require("./delivery");
+exports.User = require("./user");
+exports.Driver = require("./drivers");
+exports.Places = require("./places");
+exports.Notify = require("./notify");
+exports.Order = require("./orders");
+exports.Collections = require("./collections");
+exports.Banners = require("./banners");
+exports.Products = require("./products");
+exports.gridProducts = require("./gridProducts");
+exports.Cart = require("./cart")

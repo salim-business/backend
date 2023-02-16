@@ -1,0 +1,156 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require("../app");
+var http = require("http");
+var database = require("../database");
+var Logger = require("../logger");
+const socket = require("../utils/socket");
+const jwt = require("jsonwebtoken");
+const { SECRET_KEY } = require("../constants");
+const uuid = require("uuid");
+const Notify = require("../models/notify");
+const Orders = require("../models/orders");
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = normalizePort(process.env.PORT || "3000");
+app.set("port", port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+
+// const io = socket.init(server);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on("error", onError);
+server.on("listening", onListening);
+server.timeout = 120000; // added.... to make request wait longer befoer res
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== "listen") {
+    throw error;
+  }
+
+  var bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case "EACCES":
+      console.error(bind + " requires elevated privileges");
+      process.exit(1);
+      break;
+    case "EADDRINUSE":
+      console.error(bind + " is already in use");
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
+  Logger.log("Listening on " + bind);
+  database.connect();
+
+  const io = socket.init(server);
+
+  io.use((socket, next) => {
+    console.log(socket.handshake.auth.token, "token");
+    jwt.verify(
+      socket.handshake.auth.token,
+      SECRET_KEY,
+      function (err, decoded) {
+        console.log(decoded);
+
+        if (!err) {
+          console.log(decoded);
+          socket.user = decoded;
+        }
+        next();
+      }
+    );
+  });
+
+  io.engine.generateId = (req) => {
+    return uuid.v4(); // must be unique across all Socket.IO servers
+  };
+
+  io.on("connection", (socket) => {
+    // console.log("user", socket);
+    // if (socket.id) {
+    //   Notify.find({ user: socket.user.id }, (err, doc) => {
+    //     // console.log(doc, "notification");
+    //     io.emit("doc", doc);
+    //   });
+    // }
+
+    if (socket.user) {
+      Notify.find({ user: socket.user.id }, (err, doc) => {
+        // console.log(doc, "notification");
+        io.emit("doc", doc);
+      });
+
+      Orders.find({ userId: socket.user.id }, (err, doc) => {
+        if (doc) {
+          // console.log(doc, "connected user orders");
+          let paidOrders = doc.filter(
+            (order) => order.payment === "successful"
+          );
+          io.emit("paidOrders", paidOrders);
+        } else {
+          console.log("no orders by user yet");
+        }
+      });
+    } else {
+      io.emit("conn");
+    }
+
+    // io.emit("check", "hi");
+    io.on("reconnected", (a, b) => {
+      console.log(a, b);
+    });
+  });
+}

@@ -1,0 +1,174 @@
+<% banner.forEach((banner)=>{ 
+  let color
+  
+  (2 + 2) === 4 ? color = 'white' : color = 'black'
+
+  console.log(color)
+  
+  
+  %>
+
+<div class="slider__slide home-builder-block-id-1587069631233-1-1">
+  <!-- snippets/promobox.liquid -->
+
+  <template
+    class="js-loader-inline-style"
+    data-key="276b1ec03f8916d69cc08913799bc868695bbab8"
+  >
+    <style>
+      @media (max-width: 1024px) {
+        .home-builder-block-id-1587069631233-1-1 .rimage__img--cover {
+          object-position: 50% 50%;
+        }
+      }
+    </style>
+  </template>
+
+  <template
+    class="js-loader-inline-style"
+    data-key="956609ae5ea3996d90a183dfb2623024c037f2d4"
+  >
+    <style>
+      :root {
+        --promobox-style-2-text-1-c: var(--theme);
+        --promobox-style-2-text-2-c: var(--theme);
+        --promobox-style-2-text-3-c: var(--theme3);
+        --promobox-style-2-text-bg: var(--theme2);
+        --promobox-style-2-curtain-bg: var(--theme2);
+        --color: var(<%= color %>)
+      }
+      .promobox--style-2 .promobox__text-1 {
+        /* color: var(--promobox-style-2-text-1-c); */
+            color: var(--color)
+
+      }
+      .promobox--style-2 .promobox__text-2 {
+        color: var(--promobox-style-2-text-2-c);
+      }
+      .promobox--style-2 .promobox__text-3 {
+        color: var(--promobox-style-2-text-3-c);
+      }
+      .promobox--style-2 .promobox__bg,
+      .promobox--style-2 .promobox__plate .promobox__content::before {
+        background-color: var(--promobox-style-2-text-bg);
+      }
+      .promobox--style-2 .promobox__curtain_bg {
+        background-color: var(--promobox-style-2-curtain-bg);
+      }
+    </style>
+  </template>
+  <script>
+    theme.AssetsLoader.loadInlineStyles();
+  </script>
+  <div
+    class="promobox promobox--type-1-5 promobox--style-2 promobox--is-slider position-relative text-center overflow-hidden text-underline-parent"
+  >
+    <a href="#" class="d-block">
+      <div class="image-animation">
+        <div class="rimage d-none d-sm-block" style="min-height: 0px">
+          <div class="d-sm-none" style="padding-top: 550px"></div>
+          <div
+            class="d-none d-sm-block d-md-none"
+            style="padding-top: 400px"
+          ></div>
+          <div
+            class="d-none d-md-block d-lg-none"
+            style="padding-top: 450px"
+          ></div>
+          <div
+            class="d-none d-lg-block d-xl-none"
+            style="padding-top: 500px"
+          ></div>
+          <div
+            class="d-none d-xl-block d-ultra-none"
+            style="padding-top: 550px"
+          ></div>
+          <div class="d-none d-ultra-block" style="padding-top: 38%"></div>
+          <!-- BAnner img one goes here -->
+          <img
+            onload="theme.LazyImage.inlineCheck(this)"
+            class="rimage__img rimage__img--cover lazyload"
+            loading="eager"
+            data-master="/api/v1/gfsUpload/preview/<%=banner.imgId %>"
+            data-aspect-ratio="3.4909090909090907"
+            data-aspect-ratio-original="3.4909090909090907"
+            data-stretch-size="cover"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs="
+            data-srcset="/api/v1/gfsUpload/preview/<%=banner.imgId %> 1x, /api/v1/gfsUpload/preview/<%=banner.imgId %> 2x, /api/v1/gfsUpload/preview/<%=banner.imgId %> 3x"
+            alt=""
+          />
+        </div>
+        <div class="rimage d-sm-none" style="min-height: 0px">
+          <div class="d-sm-none" style="padding-top: 550px"></div>
+          <div
+            class="d-none d-sm-block d-md-none"
+            style="padding-top: 400px"
+          ></div>
+          <div
+            class="d-none d-md-block d-lg-none"
+            style="padding-top: 450px"
+          ></div>
+          <div
+            class="d-none d-lg-block d-xl-none"
+            style="padding-top: 500px"
+          ></div>
+          <div
+            class="d-none d-xl-block d-ultra-none"
+            style="padding-top: 550px"
+          ></div>
+          <div class="d-none d-ultra-block" style="padding-top: 38%"></div>
+          <!-- banner for mobile goes here... -->
+          <img
+                onload="theme.LazyImage.inlineCheck(this)"
+                class="rimage__img rimage__img--cover lazyload"
+                loading="eager"
+                data-master="/api/v1/gfsUpload/preview/<%=banner.imgId %>"
+                data-aspect-ratio="0.6818181818181818"
+                data-aspect-ratio-original="0.6818181818181818"
+                data-stretch-size="cover"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs="
+                data-srcset="/api/v1/gfsUpload/preview/<%=banner.imgId %> 1x, /api/v1/gfsUpload/preview/<%=banner.imgId %> 2x, /api/v1/gfsUpload/preview/<%=banner.imgId %> 3x"
+                alt="">
+        </div>
+      </div>
+    </a>
+    <div
+      class="promobox__content promobox__content--animation-scale-in absolute-stretch d-flex flex-center align-items-lg-center justify-content-lg-center w-100 mx-auto pointer-events-none"
+    >
+      <!-- Text for the first banner -->
+
+      <div class="promobox__content_inner position-absolute d-flex flex-center">
+        <div>
+          <div class="p-15 p-lg-30" >
+            <p class="promobox__text-1 h5" style="color:white;"><%=banner.h5 %></p>
+            <p class="promobox__text-2 h2 h1-sm mt-15" style="color:white;" >
+              <%=banner.title %>
+            </p>
+            <p class="promobox__text-3 mt-10" style="color:white;">
+              <%=banner.text %>
+            </p>
+            <div class="promobox__btns mt-30">
+              <div class="row no-gutters">
+                <div class="col-12 col-lg-6 mb-10 mb-lg-0 pr-lg-5" >
+                  <a
+                    href="collections/products?category=WOMEN"
+                    class="promobox__btn-1 btn btn--default btn--transparent" style="color:white;"
+                    >SHOP WOMEN’S</a
+                  >
+                </div>
+                <div class="col-12 col-lg-6 pl-lg-5">
+                  <a
+                    href="collections/products?category=MEN"
+                    class="promobox__btn-2 btn btn--default btn--transparent" style="color:white;"
+                    >SHOP MEN’S</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%})%>

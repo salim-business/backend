@@ -1,0 +1,11 @@
+--2022-08-25 15:15:55--  https://cdn.shopify.com/s/files/1/0275/1814/0468/t/6/assets/cursor-product-gallery.png?v=68118539869966714081628073568
+Resolving cdn.shopify.com (cdn.shopify.com)... 104.16.254.71, 104.16.255.71
+Connecting to cdn.shopify.com (cdn.shopify.com)|104.16.254.71|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 744 [image/png]
+Saving to: ‘cursor-product-gallery.png?v=68118539869966714081628073568.1’
+
+     0K                                                       100% 42.8M=0s
+
+2022-08-25 15:15:56 (42.8 MB/s) - ‘cursor-product-gallery.png?v=68118539869966714081628073568.1’ saved [744/744]
+

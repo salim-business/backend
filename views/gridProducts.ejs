@@ -1,0 +1,70 @@
+<% grid.forEach((product)=>{ %>
+
+  <div class="home-builder-block-id-1587069956521-1 col-12 col-md-4 mb-30 mb-sm-30">
+    <!-- snippets/promobox.liquid -->
+
+    <template class="js-loader-inline-style" data-key="901ca8f80a7df4ea9f2f7a767b1f962f26025e6b">
+      <style>
+        :root {
+          --promobox-style-3-text-1-c: var(--theme);
+          --promobox-style-3-text-2-c: var(--theme3);
+          --promobox-style-3-text-3-c: var(--theme);
+          --promobox-style-3-text-bg: var(--theme2);
+          --promobox-style-3-curtain-bg: var(--theme2);
+        }
+
+        .promobox--style-3 .promobox__text-1 {
+          color: var(--promobox-style-3-text-1-c);
+        }
+
+        .promobox--style-3 .promobox__text-2 {
+          color: var(--promobox-style-3-text-2-c);
+        }
+
+        .promobox--style-3 .promobox__text-3 {
+          color: var(--promobox-style-3-text-3-c);
+        }
+
+        .promobox--style-3 .promobox__bg,
+        .promobox--style-3 .promobox__plate .promobox__content::before {
+          background-color: var(--promobox-style-3-text-bg);
+        }
+
+        .promobox--style-3 .promobox__curtain_bg {
+          background-color: var(--promobox-style-3-curtain-bg);
+        }
+      </style>
+    </template>
+    <script>
+      theme.AssetsLoader.loadInlineStyles();
+    </script>
+
+    <div class="promobox promobox--type-3 promobox--style-3 position-relative text-center">
+      <a href="/view-product/<%= product._id %>" class="d-block">
+        <div class="image-animation image-animation--from-none image-animation--to-center">
+          <div class="rimage" style="padding-top: 72.97297297297297%; min-height: 0px">
+            <img onload="theme.LazyImage.inlineCheck(this)" class="rimage__img rimage__img--cover lazyload"
+              loading="eager" data-master="/api/v1/gfsUpload/preview/<%=product.imgIds[0]%>"
+              data-aspect-ratio="1.3703703703703705" data-aspect-ratio-original="1.3703703703703705"
+              data-stretch-size="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs="
+              data-srcset="/api/v1/gfsUpload/preview/<%=product.imgIds[0]%> 1x, /api/v1/gfsUpload/preview/<%=product.imgIds[0]%> 2x, /api/v1/gfsUpload/preview/<%=product.imgIds[0]%> 3x"
+              data-scale-perspective="1.1" alt="" />
+          </div>
+        </div>
+      </a>
+      <div class="promobox__plate position-absolute d-flex flex-center pointer-events-none">
+        <div class="promobox__content px-10 py-7">
+          <div class="position-relative">
+            <p class="promobox__text-1 h5"><%= product.variant %></p>
+          <% if(product.message){ %>
+            
+            <p class="promobox__text-2"><%= product.message %></p>
+         <%}%>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%})%>

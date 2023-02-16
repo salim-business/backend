@@ -1,0 +1,25 @@
+<% imgIds.forEach((e, index)=>{ %>
+
+
+
+    <div class="product-gallery__main_item product-gallery__main_item--type-image position-relative overflow-hidden"
+        data-js-product-gallery-main-item data-item-index=<%=index%>>
+        <div class="product-gallery__blockratio product-gallery__blockratio--stretch_size-contain overflow-hidden"
+            data-js-product-gallery-blockratio data-width="99.82003599280144">
+            <div class="product-gallery__blockratio_content w-100 w-100-inner"
+                data-js-product-gallery-blockratio-content>
+                <div class="rimage" style="
+                                            padding-top: 128.23076923076923%;
+                                          ">
+                    <img onload="theme.LazyImage.inlineCheck(this)" class="rimage__img lazyload donothide"
+                        loading="eager" data-master="/api/v1/gfsUpload/preview/<%=e%>"
+                        data-aspect-ratio="0.7798440311937612" data-aspect-ratio-original="0.7798440311937612"
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs="
+                        data-srcset="/api/v1/gfsUpload/preview/<%=e%> 1x,/api/v1/gfsUpload/preview/<%=e%> 2x, /api/v1/gfsUpload/preview/<%=e%> 3x"
+                        alt="Cotton Crewneck Sweater" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%})%>

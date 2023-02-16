@@ -1,0 +1,117 @@
+
+<% if(cartProducts.length) {%>
+<div>
+<div class="popup-cart py-25 px-20 js-popup-cart-ajax" data-popup-content>
+    <div class="popup-cart__head d-flex align-items-center">
+        <h5 class="m-0">MY BAG <span>(<%= cartProducts.length %>)</span></h5>
+        <i class="popup-cart__close ml-auto cursor-pointer" data-js-popup-close>
+
+
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-theme-164"
+                viewBox="0 0 24 24">
+                <g>
+                    <path d="M19.583,4.965c0,0.17-0.059,0.319-0.176,0.449l-6.445,6.426l6.445,6.426c0.117,0.131,0.176,0.28,0.176,0.449
+		c0,0.17-0.059,0.319-0.176,0.449c-0.065,0.053-0.137,0.095-0.215,0.127c-0.078,0.033-0.156,0.049-0.234,0.049
+		s-0.156-0.016-0.234-0.049c-0.078-0.032-0.15-0.074-0.215-0.127l-6.426-6.445l-6.426,6.445c-0.065,0.053-0.137,0.095-0.215,0.127
+		c-0.078,0.033-0.156,0.049-0.234,0.049s-0.156-0.016-0.234-0.049c-0.078-0.032-0.15-0.074-0.215-0.127
+		c-0.117-0.13-0.176-0.279-0.176-0.449c0-0.169,0.059-0.318,0.176-0.449l6.445-6.426L4.759,5.414
+		c-0.117-0.13-0.176-0.279-0.176-0.449c0-0.169,0.059-0.318,0.176-0.449c0.13-0.117,0.28-0.176,0.449-0.176
+		c0.169,0,0.319,0.059,0.449,0.176l6.426,6.445l6.426-6.445c0.13-0.117,0.28-0.176,0.449-0.176c0.169,0,0.319,0.059,0.449,0.176
+		C19.524,4.646,19.583,4.796,19.583,4.965z" />
+                </g>
+            </svg>
+        </i>
+    </div>
+    <div class="popup-cart__content">
+        <div class="popup-cart__items mt-15">
+            <% if(cartProducts) cartProducts.forEach((product)=>{ %>
+
+                <div class="product-cart mb-20" data-js-product data-product-variant-id="<%= product.productId %>"
+                    data-product-cart-line="<%= product.productId %>">
+                    <div class="d-flex flex-row align-items-start">
+                        <div class="product-cart__image mr-15">
+                            <a href="/view-product/<%= product.productId %>" class="d-block cursor-default"
+                                data-js-product-image>
+                                <div class="rimage" style="padding-top:128.0%;"><img
+                                        class="rimage__img rimage__img--contain" loading="eager"
+                                        data-master="//cdn.shopify.com/s/files/1/0275/1814/0468/products/2605987251_1_1_1_7af4f909-456b-4e53-8601-b726fc1bd01d_{width}x.progressive.jpg?v=1573629817"
+                                        data-aspect-ratio="0.78125" data-aspect-ratio-original="0.7798440311937612"
+                                        data-stretch-size="contain"
+                                        src="/api/v1/gfsUpload/preview/<%=product.imgIds[0]%>"
+                                        srcset="/api/v1/gfsUpload/preview/<%=product.imgIds[0]%> 1x, /api/v1/gfsUpload/preview/<%=product.imgIds[0]%> 2x, /api/v1/gfsUpload/preview/<%=product.imgIds[0]%> 3x"
+                                        data-image-id="" alt="Cotton Crewneck Sweater"></div>
+                            </a>
+                        </div>
+                        <div class="product-cart__content d-flex flex-column align-items-start">
+                            <div class="product-cart__title mb-3">
+                                <h3 class="h6 m-0">
+                                    <a href="/view-product/<%= product.productId %>">
+                                        <%= product.name %>
+                                    </a>
+                                </h3>
+                            </div>
+
+                            <div class="product-cart__variant d-none">Default variant</div>
+                            <div class="product-cart__price mt-10 mb-10">
+                                <span class="product-cart__quantity">
+                                    <%= product.quantity %>
+                                </span> <span>x</span> <span class="product-cart__price-value">
+                                    <!-- snippets/product-get-price.liquid --><span class="price"
+                                        data-js-product-price><span><span class=money>$<%= product.cost %>
+                                            </span></span></span>
+                                </span>
+                            </div>
+                            <a href="/cart/change?id=<%= product.productId %>"
+                                class="product-cart__remove btn-link js-product-button-remove-from-cart">Remove</a>
+                        </div>
+                    </div>
+                </div>
+                <%})%>
+
+        </div>
+        <div class="popup-cart__footer position-sticky bottom-0 border-top pt-5 pb-25">
+            <div class="popup-cart__subtotal h5 d-flex align-items-center mt-10 mb-0">
+                <p class="m-0">SUBTOTAL</p>
+                <span class="ml-auto">
+                    <!-- snippets/product-get-price.liquid --><span class="price" data-js-product-price><span><span
+                                class=money>$<%= total %></span></span></span>
+                </span>
+            </div>
+            <div class="popup-cart__buttons mt-15">
+                <!-- <a href="/checkout" class="btn btn--full btn--secondary">PROCEED TO CHECKOUT</a> -->
+                <a href="/view-shopping-cart" class="btn btn--full mt-20">VIEW SHOPPING BAG</a>
+            </div>
+        </div>
+</div>
+</div>
+<% } else { %>
+    <div>
+
+    
+    <div class="popup-cart py-25 px-20 js-popup-cart-ajax" data-popup-content>
+        <div class="popup-cart__head d-flex align-items-center">
+            <h5 class="m-0">MY BAG <span>(0)</span></h5>
+            <i class="popup-cart__close ml-auto cursor-pointer" data-js-popup-close>
+
+
+                <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-theme-164"
+                    viewBox="0 0 24 24">
+                    <g>
+                        <path d="M19.583,4.965c0,0.17-0.059,0.319-0.176,0.449l-6.445,6.426l6.445,6.426c0.117,0.131,0.176,0.28,0.176,0.449
+                        c0,0.17-0.059,0.319-0.176,0.449c-0.065,0.053-0.137,0.095-0.215,0.127c-0.078,0.033-0.156,0.049-0.234,0.049
+                        s-0.156-0.016-0.234-0.049c-0.078-0.032-0.15-0.074-0.215-0.127l-6.426-6.445l-6.426,6.445c-0.065,0.053-0.137,0.095-0.215,0.127
+                        c-0.078,0.033-0.156,0.049-0.234,0.049s-0.156-0.016-0.234-0.049c-0.078-0.032-0.15-0.074-0.215-0.127
+                        c-0.117-0.13-0.176-0.279-0.176-0.449c0-0.169,0.059-0.318,0.176-0.449l6.445-6.426L4.759,5.414
+                        c-0.117-0.13-0.176-0.279-0.176-0.449c0-0.169,0.059-0.318,0.176-0.449c0.13-0.117,0.28-0.176,0.449-0.176
+                        c0.169,0,0.319,0.059,0.449,0.176l6.426,6.445l6.426-6.445c0.13-0.117,0.28-0.176,0.449-0.176c0.169,0,0.319,0.059,0.449,0.176
+                        C19.524,4.646,19.583,4.796,19.583,4.965z" />
+                    </g>
+                </svg>
+            </i>
+        </div>
+        <div class="popup-cart__empty mt-20">Your shopping bag is empty.</div>
+    </div>
+
+</div>  
+
+    <% } %>
