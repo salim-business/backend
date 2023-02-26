@@ -6,7 +6,7 @@ router
   .route("/")
   .post(gridProductsController.addItem)
   .get(gridProductsController.getItem)
-  .patch(gridProductsController.addItem);
+  .patch(gridProductsController.editItem);
 
 router.route("/:id").delete(gridProductsController.deleteItem);
 

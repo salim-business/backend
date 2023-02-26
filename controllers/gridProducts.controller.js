@@ -3,9 +3,15 @@ const AppError = require("../utils/AppError");
 const { gridProductsService } = require("../services");
 
 exports.addItem = async (req, res, next) => {
-  console.log(req.body, "items....");
+  // console.log(req.body, "items....");
   const item = await gridProductsService.createItem(req.body);
   res.json(item);
+};
+
+exports.editItem = async (req, res, next) => {
+	// console.log(req.body, "items....");
+	const item = await gridProductsService.editItem(req.body);
+	res.json(item);
 };
 
 exports.getItem = async (req, res) => {

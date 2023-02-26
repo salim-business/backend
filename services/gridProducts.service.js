@@ -10,6 +10,12 @@ const createItem = async (product) => {
   // }
 };
 
+const editItem = async product => {
+	console.log(product, "service");
+	return await gridProducts.findByIdAndUpdate(product._id, product);
+
+};
+
 const deleteItem = async (itemId) => {
   const place = await gridProducts.findOneAndDelete({ _id: itemId });
   // const place = await Items.remove({ _id: itemId });
@@ -19,4 +25,5 @@ const deleteItem = async (itemId) => {
 module.exports = {
   deleteItem,
   createItem,
+  editItem
 };

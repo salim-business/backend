@@ -13,6 +13,17 @@ exports.addItem = async (req, res, next) => {
 
 };
 
+exports.editItem = async (req, res, next) => {
+	console.log(req.body, "items to be ....");
+	try {
+		const item = await productsService.editItem(req.body);
+		res.json(item);
+	} catch (error) {
+		res.send(error);
+	}
+};
+
+
 exports.getItem = async (req, res) => {
   const items = await Product.find();
   res.json(items);

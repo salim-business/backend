@@ -3,8 +3,18 @@ const gfsService = require("./gfs.service");
 const { log } = require("../logger");
 
 const createItem = async (product) => {
-	console.log(product, "service");
+	// console.log(product, "service");
 	return await Products.create(product);
+	// if (placeData.id) {
+	//   return await Items.updateOne({ _id: placeData.id }, placeData);
+	// } else {
+	//   return await Items.create(placeData);
+	// }
+};
+
+const editItem = async product => {
+	console.log(product, "to be edited >>>>>>>>>>>>>>>");
+	return await Products.findByIdAndUpdate(product._id, product)
 	// if (placeData.id) {
 	//   return await Items.updateOne({ _id: placeData.id }, placeData);
 	// } else {
@@ -33,4 +43,5 @@ const deleteItem = async (itemId) => {
 module.exports = {
 	deleteItem,
 	createItem,
+	editItem
 };

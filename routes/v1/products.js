@@ -6,7 +6,7 @@ router
   .route("/")
   .post(productsController.addItem)
   .get(productsController.getItem)
-  .patch(productsController.addItem);
+  .patch(productsController.editItem);
 
 router.route("/:id").delete(productsController.deleteItem);
 
