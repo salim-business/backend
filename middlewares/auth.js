@@ -36,7 +36,7 @@ exports.authenticate = async (req, res, next) => {
   // verification token
   let payload;
   try {
-    payload = await promisify(jwt.verify)(token, constants.SECRET_KEY);
+    payload = await promisify(jwt.verify)(token, process.env.SECRET_KEY);
   } catch (er) {
     return next(
       new AppError(

@@ -14,6 +14,7 @@ const createItem = async (product) => {
 
 const editItem = async product => {
 	console.log(product, "to be edited >>>>>>>>>>>>>>>");
+	const saved = await Products.findById(product._id);
 	return await Products.findByIdAndUpdate(product._id, product)
 	// if (placeData.id) {
 	//   return await Items.updateOne({ _id: placeData.id }, placeData);

@@ -15,7 +15,7 @@ const crypto = require("crypto");
  * @returns {String} `token` authentication token
  */
 const generateAuthToken = (user) => {
-  return jwt.sign(user, constants.SECRET_KEY, {
+  return jwt.sign(user, process.env.SECRET_KEY, {
     // expiresIn: "30 days",
   });
 };

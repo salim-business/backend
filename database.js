@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Logger = require("./logger");
 const constants = require("./constants");
-const socket = require("./utils/socket");
 
 const database = {};
 // mongoose.Promise = global.Promise;
@@ -26,9 +25,10 @@ mongoose.connection.on("reconnected", () => {
 });
 
 database.connect = function connect() {
+  console.log(process.env.MONGO_DB)
   mongoose.set("debug", process.env.NODE_ENV !== "production");
   mongoose
-    .connect(constants.database.url, {
+    .connect(process.env.MONGO_DB, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       // useCreateIndex: true,
@@ -42,9 +42,9 @@ database.connect = function connect() {
     })
     .catch((err) => {
       Logger.error(
-        `An error occurred while trying to connect to the system database, retrying in ${constants.database.connectRetry}s. Err: ${err}`
+        `An error occurred while trying to connect to the system database, retrying in ${5}s. Err: ${err}`
       );
-      setTimeout(database.connect, constants.database.connectRetry * 1000);
+      setTimeout(database.connect, 5 * 1000);
     });
 };
 

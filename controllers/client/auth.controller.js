@@ -25,7 +25,7 @@ exports.authenticate = function (req, res, next) {
       { phone: req.body.phone, username: req.body.username },
       async (err, user) => {
         if (user) {
-          const token = jwt.sign({ id: user._id }, constants.SECRET_KEY);
+          const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY);
           console.log("user exists", user);
           const ObjectId = require("mongodb").ObjectId;
           const ordersQuery = await Order.find({ userId: ObjectId(user._id) });
@@ -136,7 +136,7 @@ exports.verify = function (req, res, next) {
     Users.findOne({ phone: phone }, (err, user) => {
       if (user) {
         console.log(user, "user exists");
-        var token = jwt.sign({ id: user._id }, constants.SECRET_KEY);
+        var token = jwt.sign({ id: user._id }, process.env.SECRET_KEY);
         console.log(token);
 
         wait(3000);
@@ -160,7 +160,7 @@ exports.verify = function (req, res, next) {
         addUser
           .then((user) => {
             //handleResolve then
-            var token = jwt.sign({ id: user._id }, constants.SECRET_KEY);
+            var token = jwt.sign({ id: user._id }, process.env.SECRET_KEY);
             wait(5000);
 
             res.json({

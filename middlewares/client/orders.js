@@ -17,7 +17,7 @@ module.exports = function (req, res, next) {
   }
   let token = req.header("token");
   console.log(token, "token clientt");
-  jwt.verify(token, constants.SECRET_KEY, function (err, decoded) {
+  jwt.verify(token, process.env.SECRET_KEY, function (err, decoded) {
     if (err) {
       return next(
         new Error("You are not authenticated to make the order, Please log in")

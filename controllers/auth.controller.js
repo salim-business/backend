@@ -73,8 +73,8 @@ exports.login = async (req, res, next) => {
 
   if (
     !admin &&
-    username === constants.DEFAULT_ADMIN.USERNAME &&
-    password === constants.DEFAULT_ADMIN.PASSWORD
+    username === process.env.DEFAULT_ADMIN_USERNAME &&
+    password === process.env.DEFAULT_ADMIN_PASSWORD
   ) {
     return createTokenAndSend(
       {
@@ -137,7 +137,7 @@ exports.updatePassword = async (req, res, next) => {
 
   // admin
   if (req.user.isRoot) {
-    let admin = context.store.getAdmin(constants.DEFAULT_ADMIN.USERNAME);
+    let admin = context.store.getAdmin(process.env.DEFAULT_ADMIN.USERNAME);
     let hasMatched;
 
     if (admin) {
@@ -146,12 +146,12 @@ exports.updatePassword = async (req, res, next) => {
         admin.password
       );
     } else {
-      hasMatched = currentPassword === constants.DEFAULT_ADMIN.PASSWORD;
+      hasMatched = currentPassword === process.env.DEFAULT_ADMIN.PASSWORD;
     }
 
     if (hasMatched) {
-      context.store.updateAdmin(constants.DEFAULT_ADMIN.USERNAME, {
-        username: constants.DEFAULT_ADMIN.USERNAME,
+      context.store.updateAdmin(process.env.DEFAULT_ADMIN.USERNAME, {
+        username: process.env.DEFAULT_ADMIN.USERNAME,
         password: await await bcrypt.hash(password, 8),
       });
       return createTokenAndSend(req.user, res);
