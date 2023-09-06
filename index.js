@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-
+console.log("===================AM IM RUNNING=============================")
 var app = require("./app");
 var http = require("http");
 var database = require("./database");
