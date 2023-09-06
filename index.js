@@ -6,10 +6,6 @@ const path = require("path");
 const cors = require("cors");
 const AppError = require("./utils/AppError");
 require("dotenv").config();
-const db = require("./models");
-const xtend = require("xtend");
-
-const { getIO } = require("./utils/socket");
 const app = express();
 
 // enable cors
@@ -61,7 +57,6 @@ app.use(errorHandler);
 //   console.error(err && err.stack)
 //   process.exit(0)
 // });
-
-app.locals.hehe = 66
+console.log('have reun')
 
 module.exports = app;
