@@ -8,12 +8,6 @@ var app = require("../index");
 var http = require("http");
 var database = require("../database");
 var Logger = require("../logger");
-const socket = require("../utils/socket");
-const jwt = require("jsonwebtoken");
-const { SECRET_KEY } = require("../constants");
-const uuid = require("uuid");
-const Notify = require("../models/notify");
-const Orders = require("../models/orders");
 
 /**
  * Get port from environment and store in Express.
@@ -94,63 +88,4 @@ function onListening() {
   var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
   Logger.log("Listening on " + bind);
   database.connect();
-
-  const io = socket.init(server);
-
-  io.use((socket, next) => {
-    console.log(socket.handshake.auth.token, "token");
-    jwt.verify(
-      socket.handshake.auth.token,
-      SECRET_KEY,
-      function (err, decoded) {
-        console.log(decoded);
-
-        if (!err) {
-          console.log(decoded);
-          socket.user = decoded;
-        }
-        next();
-      }
-    );
-  });
-
-  io.engine.generateId = (req) => {
-    return uuid.v4(); // must be unique across all Socket.IO servers
-  };
-
-  io.on("connection", (socket) => {
-    // console.log("user", socket);
-    // if (socket.id) {
-    //   Notify.find({ user: socket.user.id }, (err, doc) => {
-    //     // console.log(doc, "notification");
-    //     io.emit("doc", doc);
-    //   });
-    // }
-
-    if (socket.user) {
-      Notify.find({ user: socket.user.id }, (err, doc) => {
-        // console.log(doc, "notification");
-        io.emit("doc", doc);
-      });
-
-      Orders.find({ userId: socket.user.id }, (err, doc) => {
-        if (doc) {
-          // console.log(doc, "connected user orders");
-          let paidOrders = doc.filter(
-            (order) => order.payment === "successful"
-          );
-          io.emit("paidOrders", paidOrders);
-        } else {
-          console.log("no orders by user yet");
-        }
-      });
-    } else {
-      io.emit("conn");
-    }
-
-    // io.emit("check", "hi");
-    io.on("reconnected", (a, b) => {
-      console.log(a, b);
-    });
-  });
 }
