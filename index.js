@@ -1,62 +1,91 @@
-const cookieParser = require("cookie-parser");
-const httpStatus = require("http-status");
-const express = require("express");
-const logger = require("morgan");
-const path = require("path");
-const cors = require("cors");
-const AppError = require("./utils/AppError");
-require("dotenv").config();
-const app = express();
+#!/usr/bin/env node
 
-// enable cors
-const corsOptions = {
-  exposedHeaders: ["X-Access-Token"],
-  origin: true,
-  credentials: true,
-  methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
-};
+/**
+ * Module dependencies.
+ */
 
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
+var app = require("./app");
+var http = require("http");
+var database = require("./database");
+var Logger = require("./logger");
 
-app.use(cors(corsOptions));
+/**
+ * Get port from environment and store in Express.
+ */
 
-const { errorConverter, errorHandler } = require("./middlewares/error");
-const { authLimiter } = require("./middlewares/rateLimiter");
-const apiV1Router = require("./routes/v1");
-const clientRouter = require("./routes/client/v1");
-const igcRouter = require("./routes/v1/igc");
+var port = normalizePort(process.env.PORT || "3000");
+app.set("port", port);
 
-app.use(logger("dev"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+/**
+ * Create HTTP server.
+ */
 
-if (app.get("env") === "production") {
-  app.disable("x-powered-by");
-  // limit repeated failed requests to auth endpoints
-  app.use("/api/v1/auth/login", authLimiter);
+var server = http.createServer(app);
+
+// const io = socket.init(server);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on("error", onError);
+server.on("listening", onListening);
+server.timeout = 120000; // added.... to make request wait longer befoer res
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
 }
 
-app.use("/api/v1", apiV1Router);
-app.use("/client/v1", clientRouter);
-app.use("/", igcRouter);
-// send back a 404 error for any unknown api request
-app.use((req, res, next) => {
-  next(new AppError("Not found", httpStatus.NOT_FOUND));
-});
+/**
+ * Event listener for HTTP server "error" event.
+ */
 
-// convert error to AppError, if needed
-app.use(errorConverter);
+function onError(error) {
+  if (error.syscall !== "listen") {
+    throw error;
+  }
 
-// handle error
-app.use(errorHandler);
+  var bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
 
-// process.on('uncaughtException', err => {
-//   console.error(err && err.stack)
-//   process.exit(0)
-// });
-console.log('have reun')
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case "EACCES":
+      console.error(bind + " requires elevated privileges");
+      process.exit(1);
+      break;
+    case "EADDRINUSE":
+      console.error(bind + " is already in use");
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
 
-module.exports = app;
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
+  Logger.log("Listening on " + bind);
+  database.connect();
+}
