@@ -1,7 +1,6 @@
 const { staffService, authService } = require("../services");
 const httpStatus = require("http-status");
 const AppError = require("../utils/AppError");
-const constants = require("../constants");
 const context = require("../context");
 const utils = require("../utils");
 const xtend = require("xtend");
@@ -52,29 +51,29 @@ const createTokenAndSend = (user, res) => {
  */
 exports.login = async (req, res, next) => {
   const { username, password } = req.body;
-  let admin = context.store.getAdmin(username);
+  // let admin = context.store.getAdmin(username);
 
-  if (admin) {
-    const isMatch = await utils.checkPassword(
-      password.toString(),
-      admin.password
-    );
-    if (isMatch) {
-      return createTokenAndSend(
-        {
-          id: "admin",
-          isAdmin: true,
-          isRoot: true,
-        },
-        res
-      );
-    }
-  }
+  // if (admin) {
+  //   const isMatch = await utils.checkPassword(
+  //     password.toString(),
+  //     admin.password
+  //   );
+  //   if (isMatch) {
+  //     return createTokenAndSend(
+  //       {
+  //         id: "admin",
+  //         isAdmin: true,
+  //         isRoot: true,
+  //       },
+  //       res
+  //     );
+  //   }
+  // }
 
   if (
-    !admin &&
-    username === process.env.DEFAULT_ADMIN_USERNAME &&
-    password === process.env.DEFAULT_ADMIN_PASSWORD
+    // !admin &&
+    username == process.env.DEFAULT_ADMIN_USERNAME &&
+    password == process.env.DEFAULT_ADMIN_PASSWORD
   ) {
     return createTokenAndSend(
       {
