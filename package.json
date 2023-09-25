@@ -4,8 +4,8 @@
   "private": true,
   "type": "commonjs",
   "scripts": {
-    "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www",
+    "start": "node ./index.js",
+    "dev": "nodemon ./index.js",
     "pm2-setup": "pm2 deploy production setup",
     "deploy": "pm2 deploy production"
   },
