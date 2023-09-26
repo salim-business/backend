@@ -13,7 +13,9 @@ const createItem = async (product) => {
 };
 
 const editItem = async product => {
-	console.log(product, "to be edited >>>>>>>>>>>>>>>");
+	// return console.log(product, "to be edited >>>>>>>>>>>>>>>");
+	delete product.imgIds;
+	delete product.streamIds;
 	const saved = await Products.findById(product._id);
 	return await Products.findByIdAndUpdate(product._id, product)
 	// if (placeData.id) {
