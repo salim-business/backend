@@ -10,7 +10,7 @@ const Schema = new mongoose.Schema(
 		stock: { type: String, required: true },
 		description: { type: String, required: true },	
 		imgIds: [{ type: String, required: true }],
-		streamIds: [{ type: String, required: true }],
+		imageUrls: [{ type: String, required: true}]
 	},
 	{
 		timestamps: true,

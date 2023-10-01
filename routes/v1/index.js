@@ -11,7 +11,7 @@ const ordersRoute = require("./orders");
 const driversRoute = require("./drivers");
 const placesRoute = require("./places");
 const usersRoute = require("./users");
-const uploadRoute = require("./banners");
+// const uploadRoute = require("./banners");
 const deliveryRoute = require("./delivery");
 const webhookRoute = require("./webhook");
 const OTProute = require("./verifyOTP");
@@ -23,6 +23,7 @@ const gridProductsRoute = require("./gridProducts");
 const bannersRoute = require("./banners.route");
 const picsRoute = require("./pics");
 const igcRoute = require("./igc");
+const uploadRoute = require("./upload");
 
 const router = express.Router();
 
@@ -39,7 +40,7 @@ router.use("/drivers", driversRoute);
 router.use("/places", placesRoute);
 router.use("/delivery", deliveryRoute);
 router.use("/users", usersRoute);
-router.use("/upload", uploadRoute);
+// router.use("/upload", uploadRoute);
 router.use("/verifyOTP", OTProute);
 router.use("/webhook", webhookRoute);
 router.use("/hookresponse", hookResponse);
@@ -50,5 +51,7 @@ router.use("/gridProducts", gridProductsRoute);
 router.use("/banners", bannersRoute);
 router.use("/pics", picsRoute);
 router.use("/", igcRoute);
+router.use("/upload", uploadRoute);
+
 
 module.exports = router;
