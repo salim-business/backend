@@ -1,15 +1,15 @@
-<% imgIds.forEach((e)=>{ %>
+<% imageUrls.forEach((e)=>{ %>
 
     <div class="product-gallery__thumbnail_item product-gallery__thumbnail_item--type-image mb-md-10 current"
         data-js-product-gallery-thumbnail-item>
         <div class="product-gallery__thumbnail_item_inner position-relative cursor-lg-pointer">
             <div class="rimage" style="padding-top: 128%">
                 <img onload="theme.LazyImage.inlineCheck(this)" class="rimage__img rimage__img--cover lazyload"
-                    loading="eager" data-master="/api/v1/gfsUpload/preview/<%=e%>"
+                    loading="eager" data-master="<%=e%>"
                     data-aspect-ratio="0.78125" data-aspect-ratio-original="0.7798440311937612"
                     data-stretch-size="cover"
                     src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs="
-                    data-srcset="/api/v1/gfsUpload/preview/<%=e%> 1x, /api/v1/gfsUpload/preview/<%=e%> 2x, /api/v1/gfsUpload/preview/<%=e%> 3x"
+                    data-srcset="<%=e%> 1x, <%=e%> 2x, <%=e%> 3x"
                     alt=""
                      />
             </div>

@@ -38,7 +38,7 @@ router.get("/", async function (req, res, next) {
 router.get("/view-product/:id", async function (req, res, next) {
 	const cartProducts = await Cart.find({ cookies: req.cookies._y });
 	const product = await Products.findOne({ _id: req.params.id }) || await gridProducts.findOne({ _id: req.params.id });
-	const { name, description, category, cost, id, imgIds } = product;
+	const { name, description, category, cost, id, imgIds, imageUrls } = product;
 	
 	if(imgIds.length < 10){
 
@@ -73,7 +73,7 @@ router.get("/view-product/:id", async function (req, res, next) {
 		popup: "popup",
 		product,
 		cartProducts,
-		imgIds,
+		imageUrls,
 		name,
 		description,
 		category,

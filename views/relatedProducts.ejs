@@ -10,19 +10,19 @@
                     <input type="hidden" name="form_type" value="product" /><input type="hidden" name="utf8"
                         value="✓" />
                     <div class="product-collection__image product-image product-image--hover-fade position-relative w-100 js-product-images-navigation js-product-images-hovered-end js-product-images-hover"
-                        data-js-product-image-hover="/api/v1/gfsUpload/preview/<%=product.imgIds[1]%>/{width}"
+                        data-js-product-image-hover="<%=product.imageUrls[1]%>/{width}"
                         data-js-product-image-hover-id="13457787748404">
                         <a href="/view-product/<%=product._id%>" class="d-block cursor-default"
                             data-js-product-image>
                             <div class="rimage" style="padding-top: 128%">
                                 <img onload="theme.LazyImage.inlineCheck(this)"
                                     class="rimage__img rimage__img--contain lazyload" loading="eager"
-                                    data-master="/api/v1/gfsUpload/preview/<%=product.imgIds[0]%>"
+                                    data-master="<%=product.imageUrls[0]%>"
                                     data-aspect-ratio="0.78125" data-aspect-ratio-original="0.7798440311937612"
                                     data-stretch-size="contain"
                                     src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs="
-                                    data-srcset="/api/v1/gfsUpload/preview/<%=product.imgIds[0]%> 1x, /api/v1/gfsUpload/preview/<%=product.imgIds[0]%> 2x, /api/v1/gfsUpload/preview/<%=product.imgIds[0]%> 3x"
-                                    data-image-id="<%=product.imgIds[0]%>" alt="<%=product.name%>" />
+                                    data-srcset="<%=product.imageUrls[0]%> 1x, <%=product.imageUrls[0]%> 2x, <%=product.imageUrls[0]%> 3x"
+                                    data-image-id="<%=product.imageUrls[0]%>" alt="<%=product.name%>" />
                             </div>
                         </a>
                         <div

@@ -1,4 +1,4 @@
-<% imgIds.forEach((e, index)=>{ %>
+<% imageUrls.forEach((e, index)=>{ %>
 
 
 
@@ -12,10 +12,10 @@
                                             padding-top: 128.23076923076923%;
                                           ">
                     <img onload="theme.LazyImage.inlineCheck(this)" class="rimage__img lazyload donothide"
-                        loading="eager" data-master="/api/v1/gfsUpload/preview/<%=e%>"
+                        loading="eager" data-master="<%=e%>"
                         data-aspect-ratio="0.7798440311937612" data-aspect-ratio-original="0.7798440311937612"
                         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs="
-                        data-srcset="/api/v1/gfsUpload/preview/<%=e%> 1x,/api/v1/gfsUpload/preview/<%=e%> 2x, /api/v1/gfsUpload/preview/<%=e%> 3x"
+                        data-srcset="<%=e%> 1x,<%=e%> 2x, <%=e%> 3x"
                         alt="Cotton Crewneck Sweater" />
                 </div>
             </div>
