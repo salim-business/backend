@@ -1,4 +1,4 @@
-console.log("===================AM IM RUNNING=============================")
+console.log("===================AM IM RUNNING=============================");
 var app = require("./app");
 var http = require("http");
 var database = require("./database");
@@ -8,7 +8,7 @@ var Logger = require("./logger");
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || "3000");
+var port = normalizePort(process.env.PORT || "5000");
 app.set("port", port);
 
 /**
