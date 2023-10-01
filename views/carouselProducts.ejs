@@ -1,7 +1,7 @@
 <% products.forEach((product)=>{ %>
   <div class="carousel__item col-auto">
     <product-item class="product-collection d-block" data-js-product data-js-product-json-preload
-      data-product-handle="cotton-crewneck-sweater"
+      data-product-handle="<%= product.name %>"
        data-product-variant-id="<%= product._id %>" data-qv-check-change>
       <div class="product-collection__wrapper mb-30 mb-lg-30">
         <form method="post" action="/api/v1/cart/add" accept-charset="UTF-8"
@@ -10,8 +10,9 @@
           <div
             class="product-collection__image product-image product-image--hover-fade position-relative w-100 js-product-images-navigation js-product-images-hovered-end js-product-images-hover"
             data-js-product-image-hover="<%=product.imageUrls[1]%>/{width}"
-            data-js-product-image-hover-id="<%= product.imgIds[1]%>">
+            data-js-product-image-hover-id="<%= product.imageUrls[1]%>">
             <!-- data-js-product-image-hover="//demo.sirv.com/bag.jpg?scale.width={width}" -->
+            <!-- data-js-product-image-hover="<%=product.imageUrls[1]%>/{width}" -->
 
             <a href="view-product/<%=product._id%>" class="d-block cursor-default" data-js-product-image>
               <div class="rimage" style="padding-top: 128%">

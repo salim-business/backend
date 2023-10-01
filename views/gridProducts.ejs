@@ -44,10 +44,10 @@
         <div class="image-animation image-animation--from-none image-animation--to-center">
           <div class="rimage" style="padding-top: 72.97297297297297%; min-height: 0px">
             <img onload="theme.LazyImage.inlineCheck(this)" class="rimage__img rimage__img--cover lazyload"
-              loading="eager" data-master="/api/v1/gfsUpload/preview/<%=product.imgIds[0]%>"
+              loading="eager" data-master="<%=product.imageUrls[0]%>"
               data-aspect-ratio="1.3703703703703705" data-aspect-ratio-original="1.3703703703703705"
               data-stretch-size="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs="
-              data-srcset="/api/v1/gfsUpload/preview/<%=product.imgIds[0]%> 1x, /api/v1/gfsUpload/preview/<%=product.imgIds[0]%> 2x, /api/v1/gfsUpload/preview/<%=product.imgIds[0]%> 3x"
+              data-srcset="<%=product.imageUrls[0]%> 1x, <%=product.imageUrls[0]%> 2x, <%=product.imageUrls[0]%> 3x"
               data-scale-perspective="1.1" alt="" />
           </div>
         </div>
