@@ -10,6 +10,7 @@ const tend = require("xtend");
 const { parseISO, addSeconds } = require("date-fns");
 const Products = require("../models/products")
 
+console.log(keys.aws)
 const s3Client = new S3Client({
   credentials: {
     accessKeyId: keys.aws.accessKeyId,
