@@ -1029,7 +1029,7 @@
               // console.log(width, "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww")
 
               return width > 0
-                ? url.replace("{width}", Math.ceil(width))
+                ? url.replace("/{width}", "")
                 : element.dataset.bg;
 
               // return element.dataset.bg
@@ -1085,8 +1085,8 @@
 
               // console.log(width, "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww2")
 
-              return width > 0 && url && url.indexOf("{width}") !== -1
-                ? url.replace("{width}", Math.min(Math.ceil(width), 3840))
+              return width > 0 && url && url.indexOf("/{width}") !== -1
+                ? url.replace("/{width}", "")
                 : dataSrcset;
               // return dataSrcset
             }
