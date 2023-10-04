@@ -168,11 +168,26 @@ const deleteUpload = async (imageKeys) => {
   return true
 };
 
+const deleteSingleUpload = async (imageKey) => {
+  // for (let index = 0; index < imageKeys.length; index++) {
+  //   const imageKey = imageKeys[index];
+  //   console.log(imageKey)
+    const deleted = await s3Client.send(new DeleteObjectCommand({
+      Bucket: keys.aws.bucketName,
+      Key: imageKey,
+    }))
+
+  //   console.log(deleted, 'deleted')
+  // }
+
+  return true
+};
+
 module.exports = {
   getObjectSignedUrl,
   s3Upload,
   getObjectSignedUrls,
   checkSignedUrls,
   s3UploadSingle,
-  deleteUpload
+  deleteUpload, deleteSingleUpload
 };

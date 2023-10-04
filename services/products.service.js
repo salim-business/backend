@@ -1,6 +1,8 @@
 const { Products, Attachment } = require("../models");
 const gfsService = require("./gfs.service");
 const { log } = require("../logger");
+const {deleteUpload} = require("../utils/storage");
+
 
 const createItem = async (product) => {
 	// console.log(product, "service");
@@ -25,23 +27,15 @@ const editItem = async product => {
 	// }
 };
 
-const deleteItem = async (itemId) => {
-	log(itemId);
-
-	await Products.findOne({ _id: itemId }).then( (doc, err) => {
-		log(err)
-		log(doc)
-		doc.imgIds.forEach(async (id) => {
-			await Attachment.findByIdAndDelete(id)
-		});
-
-		doc.streamIds.forEach((id) => {
-			gfsService.delete(id);
-		});
+const deleteItem = async (productId) => {
+	
+	Products.findByIdAndRemove(productId).then(async (doc, err) => {
+	  log(doc);
+	  const imageDeleted = await deleteUpload(doc.imgIds);
+	  log(imageDeleted);
+	  return true
 	});
-
-	return await Products.deleteOne({ _id: itemId })
-};
+  };
 
 module.exports = {
 	deleteItem,

@@ -1,6 +1,8 @@
 const { Product } = require("../models");
 const AppError = require("../utils/AppError");
 const { productsService } = require("../services");
+const { checkSignedUrls } = require("../utils/storage");
+
 
 exports.addItem = async (req, res, next) => {
   console.log(req.body, "items....");
@@ -25,8 +27,12 @@ exports.editItem = async (req, res, next) => {
 
 
 exports.getItem = async (req, res) => {
-  const items = await Product.find();
-  res.json(items);
+  const products = await Product.find();
+  
+  const productsWithUrls = await checkSignedUrls(products);
+  res.json({
+    items: productsWithUrls
+  });
 };
 
 exports.deleteItem = async (req, res, next) => {
