@@ -1,6 +1,7 @@
 const { browseService } = require("../services");
 const AppError = require("../utils/AppError");
 const httpStatus = require("http-status");
+const { checkSignedUrls } = require("../utils/storage");
 
 
 exports.getCategories = async (req, res, next) => {
@@ -9,13 +10,19 @@ exports.getCategories = async (req, res, next) => {
     req.params.category,
     req.query
   );
-
-  res.status(200).json({
+  if(req.params.category == "products") {let productsWithUrls = await checkSignedUrls(categories.data);
+    res.status(200).json({
+      items: productsWithUrls,
+      offset: req.query.offset,
+      limit: req.query.limit,
+      total: categories.total,
+    });
+  } else {res.status(200).json({
     items: categories.data,
     offset: req.query.offset,
     limit: req.query.limit,
     total: categories.total,
-  });
+  });}
 };
 
 exports.getCategory = async (req, res, next) => {

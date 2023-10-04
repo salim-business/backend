@@ -7,8 +7,7 @@ const Schema = new mongoose.Schema(
     title: { type: String, },
     h5: { type: String, },
     text: { type: String },
-
-    
+    imageUrl: { type: String, required: true }
   },
   {
     timestamps: true,
